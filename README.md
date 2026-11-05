@@ -16,29 +16,20 @@ method, a lambda, or a local `def`, across Scala 2.12, 2.13 and 3.x.
 
 ## Run
 
-One variant on one version:
+Compile one variant on one Scala version and read the compiler output:
 
 ```shell
-sbt "++3.9.0!" v1/compile
+sbt "++3.9.0! v1/compile"
 ```
 
-Every variant on every version. A failing compile is expected for some cells, so run
-them as separate sbt invocations:
+Check every variant against the expected outcome on every Scala version, then run
+the stack overflow demo on every version. Either one fails the build on a mismatch:
 
 ```shell
-for ver in 2.12.20 2.13.16 3.3.6 3.4.3 3.5.0 3.5.1 3.5.2 3.7.4 3.9.0 3.10.0; do
-  for v in v1 v2 v3; do
-    echo "##### $ver $v"
-    sbt -batch "++$ver!" "$v/clean" "$v/compile"
-  done
-done
+sbt "+verifyMatrix ; +demo/run"
 ```
 
-Stack overflow demo:
-
-```shell
-sbt "++3.9.0!" demo/run
-```
+With sbt 2.0, batch arguments are joined into one line, so separate commands with `;`.
 
 ## Results
 
