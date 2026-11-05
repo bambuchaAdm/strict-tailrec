@@ -1,3 +1,5 @@
+> LLM disclosure: this repository was built with Claude Code (an LLM-based tool). The compile results and the stack overflow demo below were produced by running the code in this repo, not taken from model output.
+
 # tailrec-strict-repro
 
 Minimal reproducers for how `@tailrec` treats recursion that goes through a helper
