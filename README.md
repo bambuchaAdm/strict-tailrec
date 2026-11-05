@@ -44,18 +44,18 @@ sbt "++3.9.0!" demo/run
 
 Compiler output for the three variants, as observed:
 
-| Version | v1 (helper) | v2 (lambda) | v3 (local def) |
-|---------|-------------|-------------|----------------|
-| 2.12.20 | silent      | error       | error          |
-| 2.13.16 | silent      | error       | error          |
-| 3.3.6   | silent      | error       | error          |
-| 3.4.3   | silent      | error       | error          |
-| 3.5.0   | silent      | error       | error          |
-| 3.5.1   | silent      | error       | warning E199   |
-| 3.5.2   | silent      | error       | warning E199   |
-| 3.7.4   | silent      | error       | warning E199   |
-| 3.9.0   | silent      | error       | warning E199   |
-| 3.10.0  | silent      | error       | warning E199   |
+| Version | v1 (helper) | v2 (lambda) | v3 (local def) | demo: v1 at runtime, 200000 deep   |
+| ------- | ----------- | ----------- | -------------- | ---------------------------------- |
+| 2.12.20 | silent      | error       | error          | Some: ok; List: StackOverflowError |
+| 2.13.16 | silent      | error       | error          | Some: ok; List: StackOverflowError |
+| 3.3.6   | silent      | error       | error          | Some: ok; List: StackOverflowError |
+| 3.4.3   | silent      | error       | error          | Some: ok; List: StackOverflowError |
+| 3.5.0   | silent      | error       | error          | Some: ok; List: StackOverflowError |
+| 3.5.1   | silent      | error       | warning E199   | Some: ok; List: StackOverflowError |
+| 3.5.2   | silent      | error       | warning E199   | Some: ok; List: StackOverflowError |
+| 3.7.4   | silent      | error       | warning E199   | Some: ok; List: StackOverflowError |
+| 3.9.0   | silent      | error       | warning E199   | Some: ok; List: StackOverflowError |
+| 3.10.0  | silent      | error       | warning E199   | Some: ok; List: StackOverflowError |
 
-`demo` on 3.9.0 (JVM default stack): `Some` nested 200000 deep completes,
-`List` nested 200000 deep throws `StackOverflowError`. Other versions are not run.
+
+The demo uses the default JVM thread stack. The depth at which `List` overflows depends on the machine.
